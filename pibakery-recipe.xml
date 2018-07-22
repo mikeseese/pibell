@@ -1,0 +1,73 @@
+<xml
+  xmlns="http://www.w3.org/1999/xhtml">
+  <block type="onfirstboot" id="onfirstboot" x="67" y="16">
+    <next>
+      <block type="changepass" id="tcfxb-/AqTkM_NA|,#O]">
+        <field name="1">raspberry</field>
+        <next>
+          <block type="wifisetup" id="07DoAbSztCm|z%jRCs7^">
+            <field name="1">WIFI_SSID</field>
+            <field name="2">WIFI_PASSWORD</field>
+            <field name="3">WPA/WPA2</field>
+            <field name="4">US</field>
+            <next>
+              <block type="packageinstall" id="MBTm?Kjoy6K|EZ5E-c-8">
+                <field name="1">git</field>
+                <next>
+                  <block type="runcommand" id="fIf0Ry}=TS6s+;Kn3evx">
+                    <field name="1">mkdir /opt</field>
+                    <field name="2">root</field>
+                    <next>
+                      <block type="runcommand" id="tI*s*pEiibE,dR+EO2Bv">
+                        <field name="1">git clone https://github.com/mikeseese/pibell.git /opt/pibell</field>
+                        <field name="2">root</field>
+                        <next>
+                          <block type="runcommand" id="{Cx*K0BUf3uCu#E[Fy[:">
+                            <field name="1">cd /opt/pibell &amp;&amp; git checkout develop</field>
+                            <field name="2">root</field>
+                            <next>
+                              <block type="runcommand" id="`04TK/Bqkc.96HP?VX2t">
+                                <field name="1">/opt/pibell/scripts/setup.sh</field>
+                                <field name="2">root</field>
+                                <next>
+                                  <block type="reboot" id="Axx+Bv4-Dyz.AK_Lr[]y"></block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="onboot" id="]HWz!EMl/F0qU{T@%:pM" x="538" y="21">
+    <next>
+      <block type="runcommand" id="*{K!)R(/f6Y-6WW.OeNr">
+        <field name="1">cd /opt/pibell &amp;&amp; git pull</field>
+        <field name="2">root</field>
+        <next>
+          <block type="runcommand" id="bRdWM0ILV3{OV4P:H;e{">
+            <field name="1">sed -i "s^/etc/uv4l/uv4l-raspicam.conf^/opt/pibell/config/uv4l.conf^g" /etc/init.d/uv4l_raspicam</field>
+            <field name="2">root</field>
+            <next>
+              <block type="runcommand" id="%CCa:nNxq7uZG{tCj7WF">
+                <field name="1">systemctl start uv4l_raspicam</field>
+                <field name="2">root</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <firstboot
+    xmlns="">0
+  </firstboot>
+</xml>

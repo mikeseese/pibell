@@ -30,7 +30,13 @@
                                 <field name="1">/opt/pibell/scripts/setup.sh</field>
                                 <field name="2">root</field>
                                 <next>
-                                  <block type="reboot" id="Axx+Bv4-Dyz.AK_Lr[]y"></block>
+                                  <block type="runcommand" id=".ZMel+jcd3wcUWdjQ;_K">
+                                    <field name="1">systemctl enable ssh</field>
+                                    <field name="2">root</field>
+                                    <next>
+                                      <block type="reboot" id="Axx+Bv4-Dyz.AK_Lr[]y"></block>
+                                    </next>
+                                  </block>
                                 </next>
                               </block>
                             </next>

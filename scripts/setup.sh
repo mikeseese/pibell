@@ -27,3 +27,6 @@ systemctl disable uv4l_raspicam
 
 # Install pibell service
 #systemctl disable pibell
+
+# Enable Pi boot config for camera
+echo "\n\n# Enable Camera Module\nstart_x=1\ngpu_mem=196\ndisable_camera_led=0\n" >> /boot/config.txt
